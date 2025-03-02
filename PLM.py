@@ -1,3 +1,4 @@
+
 """
 Credit to https://github.com/karpathy/nanoGPT
 """
@@ -698,7 +699,7 @@ parser = argparse.ArgumentParser(description="Train a LLaMA model on protein seq
 
 # Dataset arguments
 parser.add_argument(
-    '--fasta_file', type=str, default="/path/to/your/fasta_file.fasta",
+    '--fasta_file', type=str, default="/content/drive/MyDrive/Language Model/Swiss-prot sequence/uniprot_trembl.fasta",
     help='Path to the FASTA file containing protein sequences.'
 )
 parser.add_argument(
@@ -719,7 +720,7 @@ parser.add_argument('--eval_only', default='False', help='If set, only run evalu
 parser.add_argument('--grad_clip', type=float, default=1.0, help='Clip gradients above this norm.')
 parser.add_argument('--backend', type=str, default='nccl', help='Backend for DDP (nccl/gloo/etc).')
 parser.add_argument(
-    '--out_dir', type=str, default='out_pretrain_GPT_big',
+    '--out_dir', type=str, default='out_pretrain_nano_gpt',
     help='Directory to save model checkpoints and logs.'
 )
 parser.add_argument(
@@ -750,9 +751,10 @@ parser.add_argument('--log_interval', type=int, default=1, help='Log training lo
 parser.add_argument('--max_iter', type=int, default=300000, help='Total steps to train.')
 
 # Distributed training arguments
-parser.add_argument('--ddp', default=True, help='Use Distributed Data Parallel if True.')
+parser.add_argument('--ddp', default=False, help='Use Distributed Data Parallel if True.')
 
 args = parser.parse_args()
+#args = parser.parse_args('') for using jupyter notebooks and colab
 
 # -----------------------------------------------------------------------------
 # Distributed Setup
@@ -784,7 +786,10 @@ torch.backends.cuda.matmul.allow_tf32 = True
 torch.backends.cudnn.allow_tf32 = True
 
 # Choose device and precision
-device_type = "cuda" if "cuda" in device else "cpu"
+if not args.ddp:
+    device = "cuda" if torch.cuda.is_available() else "cpu"
+device_type = "cuda" if "cuda" in str(device) else "cpu"
+
 ptdtype = {
     'float32': torch.float32,
     'bfloat16': torch.bfloat16,
