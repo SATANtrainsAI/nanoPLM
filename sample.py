@@ -202,7 +202,7 @@ def generate_batch(
 # -----------------------------------------------------------------------------
 parser = argparse.ArgumentParser(description="Batched Inference for protein GPT model")
 parser.add_argument(
-    "--ckpt", type=str, default="/content/drive/MyDrive/Language Model/ckpt_ppi.pt",
+    "--ckpt", type=str, default="/path/to/your/pretrained model/ckpt.pt",
     help="Path to the pretrained model checkpoint"
 )
 parser.add_argument(
@@ -264,9 +264,10 @@ sampling_args = {
 # -----------------------------------------------------------------------------
 # Example list of prefix strings (just 1 long prefix here) and their maximum lengths
 sample_prefixes = [
-    "MDSSSTEQTVKQKLRRVIFGTDTKAGRYFDISLIICIILSVLLVFIDTVDSVHKEYGGVIRIVEWVFTGIFTLEYLLRLYCSAQPVQYARSFYGIVDLLSILPSYLALIFPGANFTLVIRILRLFRIFRVLKLLRYLSEGNILLRAMMQSSRKVFLFFFSVSLIVMVLSAFMYVVEGPENGFTSIPKSIYWTIVTITTVGYGDITPQTALGQGIAALTMLIGYSIIAIPTGILTAEISQEIVRKKDLRRCSNCLKTGHEINALYCDKCGSELESDL"
+    "MKKIILSSALA",
+    "M" #unconditional generation
 ]
-sizes = [800]
+sizes = [400, 340]
 
 # We replicate each prefix multiple times for multi-sample generation
 batched_prefixes = []
@@ -299,4 +300,8 @@ for i in range(num_prefixes):
         gen_tensor = generated_batch[idx]
         # gen_tensor is shape [1, L], we decode the single row
         generated_text = tokenizer.decode(gen_tensor[0].tolist())
-        print(f"len: {len(generated_text)} - Sample {j+1}:\n{generated_text}\n{'-'*80}")
+        if ("<eos>" in generated_text) and ("<bos>" in generated_text):
+            n = 10
+        else:
+            n = 5
+        print(f"len: {len(generated_text) - n} - Sample {j+1}:\n{generated_text}\n{'-'*80}")
