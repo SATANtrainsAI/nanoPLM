@@ -1,4 +1,7 @@
+"""
+Credit to https://github.com/karpathy/nanoGPT
 
+"""
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
