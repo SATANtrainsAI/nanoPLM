@@ -695,7 +695,7 @@ def adjust_logits_for_ngram_blocking(logits, generated_seq, n=3):
 # Main Training Script
 # -----------------------------------------------------------------------------
 tokenizer = ProteinTokenizer(token_dict)
-parser = argparse.ArgumentParser(description="Train a LLaMA model on protein sequences.")
+parser = argparse.ArgumentParser(description="Train a GPT style model on protein sequences.")
 
 # Dataset arguments
 parser.add_argument(
