@@ -32,5 +32,5 @@ We demonstrate how to load protein sequences from a FASTA file, tokenize them, t
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/<your-username>/nanoPLM.git
+   git clone https://github.com/SATANtrainsAI/nanoPLM.git
    cd nanoPLM
