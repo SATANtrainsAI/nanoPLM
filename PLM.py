@@ -6,6 +6,7 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
+
 from torch.utils.data import IterableDataset, DataLoader
 
 
@@ -807,10 +808,9 @@ targets = targets.to(device)
 
 iterations_per_epoch = len(dl) // args.grad_accum_steps
 num_epochs = (args.max_iter + iterations_per_epoch - 1) // iterations_per_epoch
-print0("NUM epochs:",num_epochs)
-print0("Len dataloader:", len(dl))
 
-for epoch in range(int(num_epochs)):
+
+while True
     micro_step = 0
 
     optimizer.zero_grad(set_to_none = True)
