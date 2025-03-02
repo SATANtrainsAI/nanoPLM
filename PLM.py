@@ -698,7 +698,7 @@ parser = argparse.ArgumentParser(description="Train a LLaMA model on protein seq
 
 # Dataset arguments
 parser.add_argument(
-    '--fasta_file', type=str, default="/scratch/mnaseri1/seq/uniprot_trembl_t.fasta",
+    '--fasta_file', type=str, default="/path/to/your/fasta_file.fasta",
     help='Path to the FASTA file containing protein sequences.'
 )
 parser.add_argument(
@@ -712,7 +712,7 @@ parser.add_argument(
 
 # Training arguments
 parser.add_argument(
-    '--init_from', type=str, choices=['scratch', 'resume'], default='resume',
+    '--init_from', type=str, choices=['scratch', 'resume'], default='scratch',
     help='Initialize model from scratch or resume from a saved checkpoint.'
 )
 parser.add_argument('--eval_only', default='False', help='If set, only run evaluation.')
