@@ -11,12 +11,12 @@ We demonstrate how to load protein sequences from a FASTA file, tokenize them, t
 - **Model**: A GPT-style transformer (`GPT` class) with:
   - Absolute Positional embeddings
   - Multiple transformer blocks
-  - Optional LoRA dimension for parameter-efficient size model
+  - Optional Latent attention for parameter effeciency (lora_dim)
 - **Training**: 
   - Uses `DataLoader` for batches
   - Implements distributed training with PyTorch’s `DistributedDataParallel` (DDP)
   - Applies automatic mixed precision (AMP) for faster training in float16/bfloat16 modes (configurable)
-- **Generation**: Demonstrates how to generate new protein sequences with specific constraints (temperature, top-k, n-gram blocking, repetition penalty).
+- **Generation**: Demonstrates how to generate new protein sequences with specific constraints (temperature, top-k, n-gram blocking, repetition penalty). Also Blasting the generated protein and predicting the structre using ESMFold and visualizing it using PyMol
 
 ---
 
