@@ -9,9 +9,9 @@ We demonstrate how to load protein sequences from a FASTA file, tokenize them, t
 - **Tokenizer**: Converts protein sequences into numerical tokens using a predefined vocabulary (`token_dict`).
 - **Dataset**: An `IterableDataset` (`ProteinIterableDataset`) that streams sequences from a (large) FASTA file, suitable for memory-efficient training.
 - **Model**: A GPT-style transformer (`GPT` class) with:
-  - Positional embeddings
+  - Absolute Positional embeddings
   - Multiple transformer blocks
-  - Optional LoRA dimension for parameter-efficient fine-tuning
+  - Optional LoRA dimension for parameter-efficient size model
 - **Training**: 
   - Uses `DataLoader` for batches
   - Implements distributed training with PyTorch’s `DistributedDataParallel` (DDP)
