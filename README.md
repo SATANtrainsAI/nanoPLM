@@ -1,4 +1,4 @@
-# nanoPLM
+# tinyPLM
 
 A tiny Protein Language Model (PLM) trained from scratch.  
 We demonstrate how to load protein sequences from a FASTA file, tokenize them, train a GPT-style model using PyTorch, and generate new protein sequences.  
