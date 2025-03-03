@@ -27,10 +27,3 @@ We demonstrate how to load protein sequences from a FASTA file, tokenize them, t
 - (Optional) Additional libraries for distributed training (e.g., `nccl` backend)
 
 ---
-
-## How to Run
-
-1. **Clone the repository**:
-   ```bash
-   git clone https://github.com/SATANtrainsAI/nanoPLM.git
-   cd nanoPLM
